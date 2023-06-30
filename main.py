@@ -47,9 +47,8 @@ def classify_message(model, message):
     else:
           label= "positive tweet"
           probability=tweet_prob[0][0]
-    return {'label': label,'probability': probability}#probability of being predicted as spam
-
-#Defining the Spam Detection GET Request
+    return {'label': label,'probability': probability}#probability of getting the predicted output 
+#Defining the tweet Detection GET Request
 # can supply the inputs of a machine learning model to a GET request using query parameters or path variables
 
 #Using Query Parameters 
@@ -59,7 +58,7 @@ async def detect_tweet_query(message: str):
 	return classify_message(model, message)
 
 #using path variable 
-# eg: 127.0.0.1.8000/spam_detection_query/i hate usa
+# eg: 127.0.0.1.8000/tweet_detection_query/i hate usa
 @app.get('/tweet_detection_path/{message}')
 async def detect_tweet_path(message: str):
 	return classify_message(model, message)
